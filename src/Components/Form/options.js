@@ -1,0 +1,21 @@
+export const options = [
+    {value: 0.1, label: "Not born yet"},
+    {value: 0.3, label: "Baby - 0 to 3 months"},
+    {value: 0.6, label: "Baby - 3 to 6 months"},
+    {value: 0.12, label: "Baby - 6 to 12 months"},
+    {value: 0.18, label: "Baby - 12 to 18 months"},
+    {value: 0.24, label: "Baby - 18 to 24 months"},
+    {value: 2, label: "2 years"},
+    {value: 3, label: "3 years"},
+    {value: 4, label: "4 years"},
+    {value: 5, label: "5 years"},
+    {value: 6, label: "6 years"},
+    {value: 7, label: "7 years"},
+    {value: 8, label: "8 years"},
+    {value: 9, label: "9 years"},
+    {value: 10, label: "10 years"},
+    {value: 11, label: "11 years"},
+    {value: 12, label: "12 years"},
+    {value: 13, label: "13 years"},
+    {value: 14, label: "14 years"}
+];
