@@ -1,18 +1,14 @@
 import React, {useState} from "react";
 import "../../App.css";
-import "./options";
+import {options} from "./options";
 
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {schema} from "./schema";
 import Select from 'react-select';
 import {Controller} from "react-hook-form";
+import {SelectProject} from '../SelectProject';
 
-const options = [
-    {value: 'chocolate', label: 'Chocolate'},
-    {value: 'strawberry', label: 'Strawberry'},
-    {value: 'vanilla', label: 'Vanilla'},
-];
 
 function Form() {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -31,6 +27,7 @@ function Form() {
         // mode: "onChange",
         resolver: yupResolver(schema),
     });
+    let newControl = control;
     //Create submitFormHandler
     const submitForm = (data) => {
         console.log(data);
@@ -71,19 +68,22 @@ function Form() {
                         {errors.func && <p style={{color: 'red'}}> {errors.func.message}</p>}
                     </div>
                     <div>
-                        <Controller
-                            name="iceCream"
+                        <SelectProject
                             control={control}
-                            render={({field}) => (
-                                <Select
-                                    {...field}
-                                    isClearable // enable isClearable to demonstrate extra error handling
-                                    isSearchable={false}
-                                    className="react-select"
-                                    options={options}
-                                />
-                            )}
                         />
+                        {/*<Controller*/}
+                        {/*    name="iceCream"*/}
+                        {/*    control={newControl}*/}
+                        {/*    render={({field}) => (*/}
+                        {/*        <Select*/}
+                        {/*            {...field}*/}
+                        {/*            isClearable // enable isClearable to demonstrate extra error handling*/}
+                        {/*            isSearchable={false}*/}
+                        {/*            className="react-select"*/}
+                        {/*            options={options}*/}
+                        {/*        />*/}
+                        {/*    )}*/}
+                        {/*/>*/}
                         <p style={{color: 'red'}}>{errors.iceCream?.message || errors.iceCream?.label.message}</p>
                     </div>
                     <input type="submit" id="submit"/>
