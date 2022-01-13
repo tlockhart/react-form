@@ -47,7 +47,7 @@ export const SelectProject = (props) => {
     return (<div>
 
             <Controller
-                name="iceCream"
+                name={props.name}
                 control={props.control}
                 render={({field}) => (
                     <Select

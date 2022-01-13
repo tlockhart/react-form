@@ -8,7 +8,7 @@ export const schema = yup.object().shape({
     // password: yup.string().min(4).max(15).required(),
     // confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
     func: yup.string().required(),
-    iceCream: yup.object()
+    proto: yup.object()
         .shape({
             label: yup.string().required("status is required(rs-label)"),
             value: yup.string().required("status is required(rs-value)")

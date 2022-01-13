@@ -93,17 +93,18 @@ function Form() {
                     </div>
                     <div>
                         <SelectProject
+                            name="proto"
                             type="proto"
                             control={control}
                             preloadedValues={preloadedValues}
                         />
+                        <p style={{color: 'red'}}>{errors.proto?.message || errors.proto?.label.message}</p>
                         <SelectProject
+                            name="tags"
                             type="tags"
                             control={control}
                             preloadedValues={preloadedValues}
-                            // defaultValue={null}
                         />
-                        <p style={{color: 'red'}}>{errors.iceCream?.message || errors.iceCream?.label.message}</p>
                     </div>
                     <input
                         type="submit"
