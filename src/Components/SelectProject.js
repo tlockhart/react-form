@@ -7,55 +7,42 @@ import React, {useState, useEffect} from "react";
 export const SelectProject = (props) => {
     const initValue = props.type === "tags" ? props.preloadedValues.selectedTags : props.preloadedValues.flavors;
     const options = props.type === "tags" ? flavors2 : flavors1;
-    let newOptions = [
-        {_id: '0', value: 'chocolate', label: 'Chocolate'},
-        {_id: '1', value: 'strawberry', label: 'Strawberry'},
-        {_id: '2', value: 'vanilla', label: 'Vanilla'},
-    ];
+
     const [selectedOptions, setSelectedOptions] = useState(initValue);
     const [selectedOptionsFormatted, setSelectedOptionsFormatted] = useState(false);
-    // const [newSelectedOptions, setNewSelectedOptions] = useState(null);
+
     useEffect(() => {
             let packageTags = async () => {
-                const selectedOptionsReceived = selectedOptions !== null || selectedOptions.length > 0;
+                console.log("First Selected Options:", selectedOptions);
+                const selectedOptionsReceived = selectedOptions !== null && selectedOptions.length > 0;
+                console.log("selectedOptionsRecieved:", selectedOptionsReceived);
                 if (selectedOptionsReceived) {
                     console.log("SelectedOptions:", selectedOptions);
-                    console.log("isArray:", Array.isArray(selectedOptions), selectedOptions instanceof Array);
-                    const isArray = Array.isArray(selectedOptions);
+                    const firstElement = selectedOptions[0];
+                    const firstEleIsString = typeof firstElement === "string";
+                    console.log("firstEleIsString:", firstEleIsString);
+                    let unformattedMultiValue = firstEleIsString && selectedOptions.length > 0;
+                    console.log("unformattedMultiValue :", unformattedMultiValue);
+                    if (unformattedMultiValue) {
+                        console.log("unFormatted Selections:", selectedOptions);
+                        let tempArray = await selectedOptions.map((item, index) => {
+                            console.log("Item:", item);
 
-                    if (isArray && selectedOptions.length > 0) {
-                        const selectionFormatted = typeof selectedOptions[0] !== "string";
-                        console.log(selectedOptions[0], " selection formatted? ", selectionFormatted);
-                        if (selectionFormatted) {
-                            console.log("Formatted Selection:", selectedOptions);
-                            //reset
-                            setSelectedOptionsFormatted(false);
-                            // setNewSelectedOptions(JSON.parse(JSON.stringify(selectedOptions)))
-                        } //if
-                        else {
-                            console.log("unFormatted Selection:", selectedOptions);
-                            const tempArray = await selectedOptions.map((item, index) => {
-                                console.log("Item:", item);
-
-                                const data = {
-                                    _id: index,
-                                    value: item.toLowerCase(),
-                                    label: item
-                                };
-
-                                return data;
-                            });
-                            console.log("TempArray:", tempArray);
-                            setSelectedOptions(tempArray);
-                            setSelectedOptionsFormatted(true);
-                        }//else
+                            return {
+                                _id: index,
+                                value: item.toLowerCase(),
+                                label: item
+                            };
+                        });
+                        setSelectedOptions(tempArray);
+                        setSelectedOptionsFormatted(true);
                     }//if
                 }//if
             } //packageTags
 
             packageTags();
         },
-        [selectedOptions, setSelectedOptionsFormatted]);
+        [selectedOptions]);
 
     return (<div>
 

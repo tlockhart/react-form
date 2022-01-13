@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
+// import {useState} from "react";
+
 import "../../App.css";
-import {options} from "./flavors1";
 
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -26,11 +27,11 @@ function Form() {
         ]
     }
 
-    const [selectedOption, setSelectedOption] = useState(null);
-    const handleChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
-        console.log(`Option selected:`, selectedOption);
-    };
+    // const [selectedOption, setSelectedOption] = useState(null);
+    // const handleChange = (selectedOption) => {
+    //     setSelectedOption(selectedOption);
+    //     console.log(`Option selected:`, selectedOption);
+    // };
     const {
         register,
         control,
@@ -100,6 +101,7 @@ function Form() {
                             type="tags"
                             control={control}
                             preloadedValues={preloadedValues}
+                            // defaultValue={null}
                         />
                         <p style={{color: 'red'}}>{errors.iceCream?.message || errors.iceCream?.label.message}</p>
                     </div>
