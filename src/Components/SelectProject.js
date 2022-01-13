@@ -47,6 +47,7 @@ export const SelectProject = (props) => {
     return (<div>
 
             <Controller
+                defaultValue={selectedOptions}
                 name={props.name}
                 control={props.control}
                 render={({field}) => (
@@ -56,7 +57,6 @@ export const SelectProject = (props) => {
                         isSearchable={false}
                         className="react-select"
                         options={options}
-                        defaultValue={selectedOptions}
                         // defaultValue={newOptions}
                         isMulti={props.type === "tags"}
                     />
