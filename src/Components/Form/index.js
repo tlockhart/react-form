@@ -1,19 +1,33 @@
 import React, {useState} from "react";
 import "../../App.css";
-import {options} from "./options";
+import {options} from "./flavors1";
 
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {schema} from "./schema";
-import Select from 'react-select';
-import {Controller} from "react-hook-form";
 import {SelectProject} from '../SelectProject';
 
 
 function Form() {
+    const preloadedValues = {
+        firstName: "User",
+        lastName: "Userson",
+        flavors: {
+            value: 'chocolate',
+            label: 'Chocolate'
+        },
+        selectedTags: [
+            'Chocolate', 'Strawberry', 'Vanilla'
+        ],
+        tags: [
+            {_id: '0', value: 'chocolate', label: 'Chocolate'},
+            {_id: '1', value: 'strawberry', label: 'Strawberry'},
+            {_id: '2', value: 'vanilla', label: 'Vanilla'},
+        ]
+    }
+
     const [selectedOption, setSelectedOption] = useState(null);
     const handleChange = (selectedOption) => {
-        // this.setState({ selectedOption });
         setSelectedOption(selectedOption);
         console.log(`Option selected:`, selectedOption);
     };
@@ -24,23 +38,32 @@ function Form() {
         formState: {errors},
         setValue,
     } = useForm({
-        // mode: "onChange",
+        defaultValues: preloadedValues,
         resolver: yupResolver(schema),
     });
-    let newControl = control;
-    //Create submitFormHandler
+
+//Create submitFormHandler
     const submitForm = (data) => {
+        //All inputs are passed back as the data argument
         console.log(data);
     };
     return (
         <div className="Form">
             <div className="title">Sign Up</div>
             <div className="inputs">
-                {/*pass into handleSubmit function submitForm function*/}
+                pass into handleSubmit function submitForm function
                 <form onSubmit={handleSubmit(submitForm)}>
-                    <input type="text" {...register('firstName')} placeholder="First Name..."/>
+                    <input
+                        type="text"
+                        {...register('firstName')}
+                        placeholder="First Name..."
+                    />
                     <p> {errors.firstName?.message} </p>
-                    <input type="text" {...register('lastName')} placeholder="Last Name..."/>
+                    <input
+                        type="text"
+                        {...register('lastName')}
+                        placeholder="Last Name..."
+                    />
                     <p> {errors.lastName?.message} </p>
                     <input type="text" {...register('email')} placeholder="Email..."/>
                     <p> {errors.email?.message} </p>
@@ -69,24 +92,21 @@ function Form() {
                     </div>
                     <div>
                         <SelectProject
+                            type="proto"
                             control={control}
+                            preloadedValues={preloadedValues}
                         />
-                        {/*<Controller*/}
-                        {/*    name="iceCream"*/}
-                        {/*    control={newControl}*/}
-                        {/*    render={({field}) => (*/}
-                        {/*        <Select*/}
-                        {/*            {...field}*/}
-                        {/*            isClearable // enable isClearable to demonstrate extra error handling*/}
-                        {/*            isSearchable={false}*/}
-                        {/*            className="react-select"*/}
-                        {/*            options={options}*/}
-                        {/*        />*/}
-                        {/*    )}*/}
-                        {/*/>*/}
+                        <SelectProject
+                            type="tags"
+                            control={control}
+                            preloadedValues={preloadedValues}
+                        />
                         <p style={{color: 'red'}}>{errors.iceCream?.message || errors.iceCream?.label.message}</p>
                     </div>
-                    <input type="submit" id="submit"/>
+                    <input
+                        type="submit"
+                        id="submit"
+                    />
                 </form>
             </div>
         </div>
