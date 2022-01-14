@@ -13,13 +13,10 @@ function Form() {
     const preloadedValues = {
         firstName: "User",
         lastName: "Userson",
-        flavors: {
-            value: 'chocolate',
-            label: 'Chocolate'
+        proto: {
+            value: 'yellow',
+            label: 'Yellow'
         },
-        selectedTags: [
-            'Chocolate', 'Strawberry', 'Vanilla'
-        ],
         tags: [
             {_id: '0', value: 'chocolate', label: 'Chocolate'},
             {_id: '1', value: 'strawberry', label: 'Strawberry'},
@@ -27,11 +24,6 @@ function Form() {
         ]
     }
 
-    // const [selectedOption, setSelectedOption] = useState(null);
-    // const handleChange = (selectedOption) => {
-    //     setSelectedOption(selectedOption);
-    //     console.log(`Option selected:`, selectedOption);
-    // };
     const {
         register,
         control,
