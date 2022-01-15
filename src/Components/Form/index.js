@@ -13,6 +13,8 @@ function Form() {
     const preloadedValues = {
         firstName: "User",
         lastName: "Userson",
+        selectedFlavors: ["Chocolate", "Strawberry", "Vanilla"],
+        selectedColors: ["White", "Yellow", "Red"],
         proto: {
             value: 'yellow',
             label: 'Yellow'

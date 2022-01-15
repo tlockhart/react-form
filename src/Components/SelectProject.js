@@ -5,8 +5,9 @@ import {Controller} from "react-hook-form";
 import React, {useState, useEffect} from "react";
 
 export const SelectProject = (props) => {
-    const initValue = props.type === "tags" ? props.preloadedValues.selectedTags : props.preloadedValues.flavors;
+    const initValue = props.type === "tags" ? props.preloadedValues.selectedFlavors : props.preloadedValues.selectedColors;
     const options = props.type === "tags" ? flavors : colors;
+    console.log("DEFAULTS:", props.preloadedValues);
     console.log("OPTIONS:", options);
 
     const [selectedOptions, setSelectedOptions] = useState(initValue);
@@ -48,7 +49,6 @@ export const SelectProject = (props) => {
     return (<div>
 
             <Controller
-                defaultValue={selectedOptions}
                 name={props.name}
                 control={props.control}
                 render={({field}) => (
